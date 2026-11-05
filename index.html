@@ -1,449 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>fboat25 — Рилсмейкер · портфолио</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>fboat25 · reels</title>
 <style>
-:root{
-  --bg:#0a0c11; --bg2:#0f1218; --card:#141822; --line:#232838;
-  --tx:#eaecf2; --mut:#9aa2b2; --gold:#e2b658; --a1:#7c5cff; --a2:#39d6e8;
-  --grad:linear-gradient(135deg,#7c5cff 0%,#39d6e8 100%);
-}
+:root{--bg:#000;--ink:#f5f5f5;--mute:#a8a8a8;--line:#262626}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:radial-gradient(1200px 700px at 80% -10%,rgba(124,92,255,.18),transparent 60%),
-      radial-gradient(1000px 600px at -10% 10%,rgba(57,214,232,.12),transparent 55%),var(--bg);
-  color:var(--tx);font-family:'Manrope',system-ui,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+html,body{background:var(--bg);color:var(--ink);font:14px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
 a{color:inherit;text-decoration:none}
-.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#0b0d12;font-weight:800;
-  padding:14px 26px;border-radius:14px;font-size:16px;box-shadow:0 10px 30px rgba(57,214,232,.25);transition:.2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(124,92,255,.35)}
-.btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--line);box-shadow:none}
-.chip{font-size:12px;font-weight:700;letter-spacing:.3px;padding:5px 11px;border-radius:100px;
-  background:rgba(124,92,255,.14);color:#c9c2ff;border:1px solid rgba(124,92,255,.25)}
-section{padding:70px 0}
-h2{font-size:32px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
-.sub{color:var(--mut);font-size:16px;margin-bottom:30px;max-width:640px}
-.eyebrow{font-family:'Oswald';letter-spacing:2px;text-transform:uppercase;font-size:13px;color:var(--a2);font-weight:600}
-
-/* HEADER */
-.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-  background:rgba(10,12,17,.72);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:'Oswald';font-weight:700;font-size:22px;letter-spacing:1px}
-.logo b{color:var(--a2)}
-.nav a.link{color:var(--mut);font-weight:600;font-size:14px;margin:0 12px;transition:.2s}
-.nav a.link:hover{color:var(--tx)}
-.navcta{padding:9px 18px;font-size:14px}
-@media(max-width:720px){.nav a.link{display:none}}
-
-/* HERO */
-.hero{padding:64px 0 40px}
-.hero h1{font-size:clamp(38px,6vw,64px);font-weight:800;letter-spacing:-1.5px;line-height:1.03}
-.hero p.lead{font-size:19px;color:var(--mut);max-width:620px;margin:20px 0 26px}
-.tags{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 30px}
-.tags span{font-size:13px;font-weight:600;color:#cfd4e0;background:var(--card);border:1px solid var(--line);
-  padding:8px 13px;border-radius:10px}
-.hstats{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px}
-.hstats div b{font-family:'Oswald';font-size:30px;display:block}
-.hstats div span{color:var(--mut);font-size:13px}
-
-/* SERVICES */
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:860px){.grid3{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.grid3{grid-template-columns:1fr}}
-.scard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:.2s}
-.scard:hover{border-color:rgba(124,92,255,.4);transform:translateY(-3px)}
-.scard .ic{font-size:26px;margin-bottom:12px}
-.scard h3{font-size:18px;font-weight:700;margin-bottom:6px}
-.scard p{color:var(--mut);font-size:14px}
-
-/* PORTFOLIO */
-.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px}
-.filters button{background:var(--card);border:1px solid var(--line);color:var(--mut);font-weight:700;
-  font-size:13px;padding:9px 16px;border-radius:100px;cursor:pointer;transition:.2s}
-.filters button.on{background:var(--grad);color:#0b0d12;border-color:transparent}
-.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-@media(max-width:900px){.gal{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.gal{grid-template-columns:repeat(2,1fr)}}
-.vcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.2s}
-.vcard:hover{transform:translateY(-4px);border-color:rgba(57,214,232,.4);box-shadow:0 18px 40px rgba(0,0,0,.4)}
-.vwrap{position:relative;aspect-ratio:9/16;background:#000}
-.vwrap video{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
-.vwrap .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:.2s}
-.vwrap .play span{width:56px;height:56px;border-radius:50%;background:rgba(10,12,17,.55);backdrop-filter:blur(4px);
-  display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(255,255,255,.2)}
-.vwrap.playing .play{opacity:0}
-.vmeta{padding:13px 14px}
-.vmeta .t{font-weight:700;font-size:14px;margin-bottom:3px}
-.vmeta .d{color:var(--mut);font-size:12px}
-.vtag{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;padding:4px 9px;border-radius:8px;
-  background:rgba(10,12,17,.7);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.14)}
-.vstatus{position:absolute;top:10px;right:10px;font-size:10px;font-weight:800;padding:4px 8px;border-radius:8px;letter-spacing:.3px;backdrop-filter:blur(4px)}
-.vstatus.draft{background:rgba(58,42,18,.85);color:#ffb454;border:1px solid #7a5a1e}
-.vstatus.chosen{background:rgba(18,50,31,.85);color:#59e39a;border:1px solid #1f6b3e}
-.subh{font-size:19px;font-weight:700;margin:30px 0 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.subh .n{color:var(--mut);font-size:14px;font-weight:600}
-.note{font-size:13.5px;color:#ffce8a;background:rgba(255,180,84,.08);border:1px solid rgba(255,180,84,.28);padding:12px 16px;border-radius:12px;margin-bottom:6px;display:block}
-/* SCHEMA / FLOW */
-.schema{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:20px}
-.stitle{font-size:17px;font-weight:700;margin-bottom:2px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-.stitle .n{font-size:13px;color:var(--mut);font-weight:600}
-.flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;padding:16px 2px 8px}
-.fcol{display:flex;flex-direction:column;gap:9px;flex-shrink:0;justify-content:center}
-.fcol .lab{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.7px;font-weight:700;text-align:center}
-.prompt{max-width:250px;min-width:210px;background:var(--bg2);border:1px dashed rgba(57,214,232,.5);border-radius:12px;padding:14px;font-size:12.5px;color:#c8ccd6;line-height:1.5}
-.prompt b{color:var(--a2)}
-.minis{display:flex;flex-wrap:wrap;gap:6px;max-width:236px;justify-content:center}
-.mini{width:64px;aspect-ratio:9/16;border-radius:7px;overflow:hidden;border:1px solid var(--line);position:relative;background:#000;cursor:pointer;transition:.15s}
-.mini:hover{transform:scale(1.06);border-color:var(--a2)}
-.mwip{position:absolute;top:3px;left:3px;font-size:6.5px;font-weight:800;letter-spacing:.2px;line-height:1;padding:2px 3px;border-radius:4px;background:rgba(58,42,18,.9);color:#ffb454;border:1px solid #7a5a1e;z-index:3;text-transform:uppercase}}
-.mini::after{content:"▶";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;opacity:.55;text-shadow:0 1px 3px #000;pointer-events:none}
-.mini img{width:100%;height:100%;object-fit:cover;display:block}
-.mini .mt{position:absolute;bottom:0;left:0;right:0;font-size:8px;font-weight:700;text-align:center;background:rgba(0,0,0,.62);color:#fff;padding:2px 1px;line-height:1.05}
-.mini.draft{border-color:#7a5a1e}
-.arr{display:flex;flex-direction:column;align-items:center;color:var(--a2);flex-shrink:0}
-.arr b{font-size:26px;font-weight:800;line-height:1}
-.arr span{font-size:9.5px;color:var(--mut);max-width:74px;text-align:center;margin-top:3px}
-.fins{display:flex;gap:12px;flex-shrink:0}
-.fin{flex-shrink:0}
-.fin .fv{width:140px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:2px solid var(--a2);position:relative;background:#000}
-.fin.gold .fv{border-color:var(--gold)}
-.fin .fv video{width:100%;height:100%;object-fit:cover;cursor:pointer;display:block}
-.fin .fbadge{font-size:10.5px;font-weight:800;text-align:center;margin-top:7px;color:var(--a2);white-space:normal;max-width:140px;line-height:1.25;margin-left:auto;margin-right:auto}
-.fin.gold .fbadge{color:var(--gold)}
-.wipb{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:rgba(58,42,18,.92);color:#ffb454;border:1px solid #7a5a1e;padding:3px 7px;border-radius:6px}
-.okb{position:absolute;top:8px;left:8px;font-size:9px;font-weight:800;background:rgba(18,50,31,.92);color:#59e39a;border:1px solid #2f7d54;padding:3px 7px;border-radius:6px;z-index:3}
-@media(max-width:640px){.arr b{font-size:18px}.fin .fv{width:118px}}
-/* без скроллбаров */
-html,body{scrollbar-width:none;-ms-overflow-style:none}
-*::-webkit-scrollbar{display:none;width:0;height:0}
-/* ЛАЙТБОКС */
-.lb{position:fixed;inset:0;z-index:200;background:rgba(6,8,12,.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
-.lb.on{display:flex}
-.lbbox{position:relative}
-.lbbox video{max-height:86vh;max-width:92vw;width:auto;border-radius:16px;border:1px solid var(--line);background:#000;display:block}
-.lbx{position:absolute;top:-16px;right:-16px;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;color:var(--tx)}
-.lbx:hover{border-color:var(--a2)}
-
-/* PROCESS */
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-@media(max-width:800px){.steps{grid-template-columns:1fr 1fr}}
-.step{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px}
-.step b{font-family:'Oswald';color:var(--a2);font-size:14px;letter-spacing:1px}
-.step h4{font-size:15px;margin:6px 0 4px}
-.step p{color:var(--mut);font-size:13px}
-
-/* PRICING */
-.price{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:860px){.price{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.price{grid-template-columns:1fr}}
-.pcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;position:relative}
-.pcard.best{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset,0 20px 50px rgba(226,182,88,.12)}
-.pcard .lab{font-size:13px;color:var(--mut);font-weight:700;margin-bottom:8px}
-.pcard .num{font-family:'Oswald';font-size:40px;font-weight:700;line-height:1}
-.pcard .num small{font-size:18px;color:var(--mut)}
-.pcard .per{color:var(--mut);font-size:13px;margin-top:4px}
-.pcard .save{display:inline-block;margin-top:12px;font-size:12px;font-weight:800;color:#0b0d12;
-  background:var(--gold);padding:4px 10px;border-radius:8px}
-.badge{position:absolute;top:-11px;right:16px;background:var(--gold);color:#0b0d12;font-weight:800;font-size:11px;padding:4px 10px;border-radius:8px}
-.incl{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
-.incl span{font-size:13px;color:#d6dae4;background:var(--bg2);border:1px solid var(--line);padding:8px 13px;border-radius:10px}
-.incl span::before{content:"✓ ";color:var(--a2);font-weight:800}
-
-/* CTA */
-.cta{background:linear-gradient(135deg,rgba(124,92,255,.16),rgba(57,214,232,.10));
-  border:1px solid var(--line);border-radius:24px;padding:48px 34px;text-align:center;margin:20px 0 60px}
-.cta h2{font-size:34px}
-.cta p{color:var(--mut);max-width:520px;margin:10px auto 26px}
-footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:13px;text-align:center}
-.tg{color:var(--a2);font-weight:700}
-
-.shots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 30px}
-@media(max-width:720px){.shots{grid-template-columns:1fr}}
-.shots figure{margin:0;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.shots img{width:100%;display:block;border-bottom:1px solid var(--line);cursor:zoom-in}
-.shots figcaption{padding:11px 14px;font-size:12.5px;color:var(--mut)}
+.wrap{max-width:935px;margin:0 auto}
+/* profile header */
+.top{display:flex;align-items:center;gap:28px;padding:28px 16px 20px}
+.ava{flex:none;width:86px;height:86px;border-radius:50%;padding:3px;background:conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75)}
+.ava img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg);display:block}
+.who{display:flex;flex-direction:column;gap:10px;min-width:0}
+.row1{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nick{font-size:20px;font-weight:400}
+.btn{background:#0095f6;color:#fff;font-weight:600;font-size:14px;padding:7px 16px;border-radius:8px}
+.btn:hover{background:#1877f2}
+.stats{display:flex;gap:24px;color:var(--ink)}
+.stats b{font-weight:600}
+.bio{color:var(--ink)}
+/* tabs */
+.tabs{display:flex;justify-content:center;border-top:1px solid var(--line)}
+.tab{display:flex;align-items:center;gap:6px;padding:14px 0;margin-top:-1px;border-top:1px solid var(--ink);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.tab svg{width:12px;height:12px}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding-bottom:40px}
+.cell{position:relative;aspect-ratio:9/16;background:#121212;overflow:hidden;cursor:pointer}
+.cell img,.cell video{width:100%;height:100%;object-fit:cover;display:block}
+.cell .ico{position:absolute;top:8px;right:8px;width:18px;height:18px;filter:drop-shadow(0 0 2px rgba(0,0,0,.6))}
+.cell:hover::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
+/* reels viewer: one video per screen */
+.viewer{position:fixed;inset:0;background:#000;z-index:10;display:none}
+.viewer.on{display:block}
+.feed{height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+.feed::-webkit-scrollbar{display:none}
+.slide{height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;position:relative}
+.slide video{height:100%;max-width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:0}
+.cap{position:absolute;left:50%;transform:translateX(-50%);bottom:24px;width:min(100%,calc(100dvh*9/16));padding:0 16px;display:flex;align-items:center;gap:10px;pointer-events:none}
+.cap img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.cap span{font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.x,.snd{position:fixed;z-index:11;width:40px;height:40px;border-radius:50%;background:rgba(38,38,38,.75);color:#fff;border:0;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.x{top:14px;right:14px}.snd{top:14px;right:62px;font-size:16px}
+.tap{position:absolute;inset:0;cursor:pointer}
+@media (max-width:735px){
+ .top{gap:20px;padding:16px}
+ .ava{width:77px;height:77px}
+ .nick{font-size:18px}
+ .stats{gap:16px}
+}
 </style>
 </head>
 <body>
-
-<div class="nav"><div class="wrap">
-  <div class="logo">f<b>boat</b>25<span style="color:var(--mut);font-size:13px;font-family:Manrope;font-weight:600"> · рилсмейкер</span></div>
-  <div>
-    <a class="link" href="#work">Работы</a>
-    <a class="link" href="#services">Услуги</a>
-    <a class="link" href="#price">Цены</a>
-    <a class="btn navcta" href="https://t.me/fboat25" target="_blank">Telegram →</a>
-  </div>
-</div></div>
-
-<!-- HERO -->
-<header class="hero"><div class="wrap">
-  <div class="eyebrow">Reels · Shorts · буктрейлеры · ИИ-графика</div>
-  <h1 style="margin-top:14px">Делаю рилсы, которые<br><span class="grad">досматривают и репостят</span></h1>
-  <p class="lead">Привет! Я собираю вертикальные ролики под ключ: от идеи и сценария до монтажа, озвучки и субтитров.
-    Использую нейросети, сток и ваши съёмки — чтобы получилось живо, по делу и с первого кадра.</p>
-  <div>
-    <a class="btn" href="https://t.me/fboat25" target="_blank">✈ Написать в Telegram — @fboat25</a>
-    <a class="btn ghost" href="#work">Смотреть работы</a>
-  </div>
-  <div class="tags">
-    <span>Рилсы под ключ</span><span>Оживление фото и обложек (ИИ)</span><span>Буктрейлеры</span>
-    <span>Монтаж из вашего материала</span><span>Озвучка ElevenLabs</span><span>Караоке-субтитры</span><span>Продающий сторителлинг</span>
-  </div>
-  <div class="hstats">
-    <div><b class="grad">от 4 часов</b><span>на готовый рилс</span></div>
-    <div><b class="grad">9:16</b><span>Reels · Shorts · Stories</span></div>
-  </div>
-</div></header>
-
-<!-- KITCHEN / PROCESS -->
-<section id="kitchen" style="background:var(--bg2);border-top:1px solid var(--line)"><div class="wrap">
-  <div class="eyebrow">Кухня · процесс</div>
-  <h2>Как рождается рилс</h2>
-  <p class="sub">Честно показываю пайплайн каждого проекта по флоу <b class="grad">промпт → варианты → результат</b>. Часть роликов — рабочие заготовки, помечаю их отдельно.</p>
-
-  <!-- SCHEMA 1: Wonders → Eiffel -->
-  <div class="schema">
-    <div class="stitle">🗼 T-74 · «Инженерные чудеса» → финальный Эйфель <span class="n">промпт → 5 чудес → 5 Эйфелей → результат</span></div>
-    <div class="flow">
-      <div class="fcol"><div class="lab">Промпт / концепт</div>
-        <div class="prompt">«Великие инженерные конструкции — <b>и одна, что изменит ваш участок</b>». Чудо + инженерный факт → твист на бренд. Кадры чуда рисует <b>flux / nano-banana</b>, оживляет <b>kling / wan</b>; финал — реальные кадры каркаса + пэкшот.<br><br>Хук Эйфеля: «Eiffel Tower iron lattice, moving clouds, sun flare, cinematic 9:16».</div></div>
-      <div class="arr"><b>→</b></div>
-      <div class="fcol"><div class="lab">Этап 1 · 5 чудес</div>
-        <div class="minis">
-          <div class="mini"><img src="posters/won_pantheon.jpg" loading="lazy"><div class="mt">Пантеон</div></div>
-          <div class="mini"><img src="posters/won_hoover.jpg" loading="lazy"><div class="mt">Гувер</div></div>
-          <div class="mini"><img src="posters/won_greatwall.jpg" loading="lazy"><div class="mt">Стена</div></div>
-          <div class="mini" style="border-color:var(--a2)"><img src="posters/won_eiffel.jpg" loading="lazy"><div class="mt">Эйфель★</div></div>
-          <div class="mini"><img src="posters/won_brunelleschi.jpg" loading="lazy"><div class="mt">Купол</div></div>
-        </div></div>
-      <div class="arr"><b>→</b><span>Эйфель зашёл — развиваем</span></div>
-      <div class="fcol"><div class="lab">Этап 2 · 5 Эйфелей</div>
-        <div class="minis">
-          <div class="mini"><img src="posters/eif_e1.jpg" loading="lazy"><div class="mt">снизу</div></div>
-          <div class="mini"><img src="posters/eif_e2.jpg" loading="lazy"><div class="mt">закат</div></div>
-          <div class="mini"><img src="posters/eif_e3.jpg" loading="lazy"><div class="mt">аэро</div></div>
-          <div class="mini" style="border-color:var(--gold)"><img src="posters/eif_e4.jpg" loading="lazy"><div class="mt">e4★</div></div>
-          <div class="mini"><img src="posters/eif_e5.jpg" loading="lazy"><div class="mt">ковка</div></div>
-        </div></div>
-      <div class="arr"><b>→</b></div>
-      <div class="fins"><div class="fin gold"><div class="fv"><span class="okb">ПРИНЯТ ЗАКАЗЧИКОМ ✓</span>
-        <video class="hp" muted loop playsinline preload="metadata" poster="posters/eif_final.jpg"><source src="videos/eif_final.mp4" type="video/mp4"></video></div>
-        <div class="fbadge">Финал (e4) · принят заказчиком</div></div></div>
+<div class="wrap">
+  <header class="top">
+    <div class="ava"><img src="avatar.jpg" alt="fboat25"></div>
+    <div class="who">
+      <div class="row1"><span class="nick">fboat25</span><a class="btn" href="https://t.me/fboat25">Написать</a></div>
+      <div class="stats"><span><b id="cnt">8</b> reels</span></div>
+      <div class="bio">AI-рилсы под ключ<br>С ИИ выпускаю ролики в несколько раз быстрее</div>
     </div>
-  </div>
+  </header>
+  <nav class="tabs"><div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 8h18M9 3l3 5M14 3l3 5M10 12v6l5-3z"/></svg>Reels</div></nav>
+  <main class="grid" id="grid"></main>
+</div>
 
-  <!-- SCHEMA 2: Ochag -->
-  <div class="schema">
-    <div class="stitle">🔥 T-74 · «Очаг» — ожидание / реальность <span class="n">промпт → 5 черновиков → 2 финалиста на выбор</span></div>
-    <div class="flow">
-      <div class="fcol"><div class="lab">Промпт / концепт</div>
-        <div class="prompt">«Очаг: <b>ожидание / реальность</b>» — ожидание жарить мясо, реальность — весь вечер у костра, песни, разговоры. Хук + блочная нарезка + <b>video-over-video</b>, Ken-Burns, озвучка ElevenLabs, караоке, музыка-крещендо, пэкшот. Собрано в самописном ИИ-редакторе.</div></div>
-      <div class="arr"><b>→</b></div>
-      <div class="fcol"><div class="lab">5 черновиков</div>
-        <div class="minis">
-          <div class="mini draft"><img src="posters/och_1.jpg" loading="lazy"><div class="mt">в.1</div></div>
-          <div class="mini draft"><img src="posters/och_2.jpg" loading="lazy"><div class="mt">в.2</div></div>
-          <div class="mini draft"><img src="posters/och_3.jpg" loading="lazy"><div class="mt">в.3</div></div>
-          <div class="mini draft"><img src="posters/och_4.jpg" loading="lazy"><div class="mt">в.4</div></div>
-          <div class="mini draft"><img src="posters/och_5.jpg" loading="lazy"><div class="mt">в.5</div></div>
-        </div></div>
-      <div class="arr"><b>→</b><span>отобрали лучшие</span></div>
-      <div class="fins">
-        <div class="fin"><div class="fv"><video class="hp" muted loop playsinline preload="metadata" poster="posters/ochf_1.jpg"><source src="videos/ochf_1.mp4" type="video/mp4"></video></div><div class="fbadge">Кандидат 1</div></div>
-        <div class="fin"><div class="fv"><video class="hp" muted loop playsinline preload="metadata" poster="posters/ochf_2.jpg"><source src="videos/ochf_2.mp4" type="video/mp4"></video></div><div class="fbadge">Кандидат 2</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCHEMA 3: Verlag -->
-  <div class="schema">
-    <div class="stitle">📖 Stella-Verlag · видео-обложка книги «Мост» <span class="n">промпт + исходники → куски (Nano-Banana + Wan) → 2 кандидата → финал (буктрейлер)</span></div>
-    <div class="flow">
-      <div class="fcol"><div class="lab">Промпт / концепт</div>
-        <div class="prompt">Видео-обложка книги «Мост» (Ида Райт). Стиль обложки: сумрак + золото, туман, призрачные души, мост. <b>Nano-Banana 2</b> рисует сцены в стиле обложки (flux-база → перерисовка), <b>Wan 2.2</b> оживляет. Старт — обложка, финал — задняя с автором.</div></div>
-      <div class="arr"><b>→</b></div>
-      <div class="fcol"><div class="lab">Куски: Nano-Banana + Wan <span class="n" style="color:#ffb454">· черновики, в стадии</span></div>
-        <div class="minis">
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_CT_titled.jpg" loading="lazy"><div class="mt">обложка</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_C4_arch.jpg" loading="lazy"><div class="mt">арка</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_N10_water.jpg" loading="lazy"><div class="mt">вода</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_N11_cliff.jpg" loading="lazy"><div class="mt">скала</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_C5_full.jpg" loading="lazy"><div class="mt">чистая</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_N12_ascend.jpg" loading="lazy"><div class="mt">души</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_N13_lantern.jpg" loading="lazy"><div class="mt">фонарь</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_N14_lookback.jpg" loading="lazy"><div class="mt">взгляд</div></div>
-          <div class="mini"><span class="mwip">в стадии</span><img src="posters/vpc_B_back.jpg" loading="lazy"><div class="mt">автор</div></div>
-        </div></div>
-      <div class="arr"><b>→</b><span>склейка + музыка</span></div>
-      <div class="fins">
-        <div class="fin gold"><div class="fv"><span class="okb">ФИНАЛ · буктрейлер</span>
-        <video class="hp" muted loop playsinline preload="metadata" poster="posters/verf_buk.jpg"><source src="videos/verf_buk.mp4" type="video/mp4"></video></div><div class="fbadge">Победитель — выбран из 2 кандидатов</div></div>
-        <div class="fin"><div class="fv"><video class="hp" muted loop playsinline preload="metadata" poster="posters/verf_v4.jpg"><source src="videos/verf_v4.mp4" type="video/mp4"></video></div><div class="fbadge">Кандидат v4</div></div>
-        <div class="fin"><div class="fv"><video class="hp" muted loop playsinline preload="metadata" poster="posters/verf_v5.jpg"><source src="videos/verf_v5.mp4" type="video/mp4"></video></div><div class="fbadge">Кандидат v5</div></div>
-      </div>
-    </div>
-  </div>
-</div></section>
-
-<!-- SERVICES -->
-<section id="services" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
-  <div class="eyebrow">Что делаю</div>
-  <h2>Форматы и услуги</h2>
-  <p class="sub">Соберу под вашу задачу — продукт, услугу, блог, книгу, мероприятие.</p>
-  <div class="grid3">
-    <div class="scard"><div class="ic">🎬</div><h3>Рилсы под ключ</h3><p>Идея → сценарий → визуал → монтаж → озвучка → субтитры. Вам — только принять готовый ролик.</p></div>
-    <div class="scard"><div class="ic">🪄</div><h3>Оживление фото и обложек</h3><p>Нейросеть превращает статичную картинку в движущийся кадр. Из одного изображения — целая сцена.</p></div>
-    <div class="scard"><div class="ic">📖</div><h3>Буктрейлеры</h3><p>Атмосферный трейлер книги: драматургия, текст, музыка — чтобы захотелось прочитать.</p></div>
-    <div class="scard"><div class="ic">✂️</div><h3>Монтаж из вашего материала</h3><p>Прислали видео с телефона? Соберу цепляющий рилс: ритм, живой голос, субтитры, музыка.</p></div>
-    <div class="scard"><div class="ic">🤖</div><h3>ИИ-графика</h3><p>Сцены под ваш стиль без съёмок — нейросети рисуют и оживляют кадры под задачу.</p></div>
-    <div class="scard"><div class="ic">🔁</div><h3>Серии и контент-поток</h3><p>Не один ролик, а система: серия рилсов под единый стиль, чтобы блог узнавали.</p></div>
-  </div>
-</div></section>
-
-<!-- PROCESS -->
-<section><div class="wrap">
-  <div class="eyebrow">Как работаю</div>
-  <h2>Процесс — прозрачный</h2>
-  <p class="sub">От брифа до готового ролика — обычно 1–2 дня.</p>
-  <div class="steps">
-    <div class="step"><b>01</b><h4>Бриф</h4><p>Цель, площадка, референсы, материал.</p></div>
-    <div class="step"><b>02</b><h4>Сценарий</h4><p>Хук, структура, панч, призыв.</p></div>
-    <div class="step"><b>03</b><h4>Визуал</h4><p>ИИ, сток или ваши съёмки.</p></div>
-    <div class="step"><b>04</b><h4>Монтаж + звук</h4><p>Ритм, озвучка, субтитры, музыка.</p></div>
-    <div class="step"><b>05</b><h4>Правки</h4><p>Довожу до идеала и отдаю.</p></div>
-  </div>
-</div></section>
-
-<!-- TOOL / STACK -->
-<section id="tool" style="background:var(--bg2);border-top:1px solid var(--line)"><div class="wrap">
-  <div class="eyebrow">Инструмент · стек</div>
-  <h2>Собираю в <span class="grad">самописном ИИ-редакторе</span></h2>
-  <p class="sub">Я написал <b style="color:var(--tx)">свой</b> веб-редактор рилсов на нодовом графе. Граф на React&nbsp;Flow: загружаю видео, оно авто-разбивается на ноды-сцены (PySceneDetect + GPT-4o Vision с заголовками), соединяю клипы в цепочку и проигрываю по пути. Прямо в графе — субтитры с эффектами, озвучка ElevenLabs, ИИ-генерация кадров (Nano-Banana, Wan, Kling, Flux) и режим «Сценарий → Рилс»: пишешь идею — ИИ собирает сцены, промпты, реплики и голоса, а бэкенд рендерит MP4. Это моя фишка — скорость и стабильное качество на потоке.</p>
-  <div class="shots">
-    <figure><img src="editor_studio.jpg" alt="Самописный ИИ-редактор — студия"><figcaption>Полный интерфейс: таймлайн, панель ИИ «Сценарий → Рилс», рендер «Собрать MP4».</figcaption></figure>
-    <figure><img src="editor_nodes.jpg" alt="Самописный ИИ-редактор — нодовый граф"><figcaption>Нодовый граф: кадры-сцены, переходы, субтитры и аудио — соединяю в цепочку.</figcaption></figure>
-  </div>
-  <div class="grid3">
-    <div class="scard"><div class="ic">🧩</div><h3>Нодовый монтаж</h3><p>React Flow: сцены — ноды, соединяю в цепочку, проигрываю по пути. Наглядно и быстро правится.</p></div>
-    <div class="scard"><div class="ic">🎯</div><h3>Авто-разбивка видео</h3><p>PySceneDetect + GPT-4o Vision режут длинное видео на смысловые сцены с заголовками.</p></div>
-    <div class="scard"><div class="ic">🪄</div><h3>ИИ-графика</h3><p>Nano-Banana 2, Wan 2.2, Kling, Flux — генерация кадров и оживление в видео под стиль.</p></div>
-    <div class="scard"><div class="ic">🎙️</div><h3>Озвучка ElevenLabs</h3><p>Живые голоса, любой язык — прямо из редактора, с формой громкости.</p></div>
-    <div class="scard"><div class="ic">💬</div><h3>Караоке-субтитры</h3><p>Пословный тайминг, выделение ключевых слов цветом и размером.</p></div>
-    <div class="scard"><div class="ic">🏷️</div><h3>Пэкшоты и оверлеи</h3><p>Брендовые концовки, PiP-вставки, стикеры, музыка-крещендо — «Собрать MP4» в один клик.</p></div>
-  </div>
-</div></section>
-
-<!-- PRICE -->
-<section id="price" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
-  <div class="eyebrow">Расценки</div>
-  <h2>Цены — <span class="grad">от 950 ₽</span></h2>
-  <p class="sub">Стартовые цены — беру объёмом и скоростью. Ниже рынка: захожу к вам вдолгую. Точную смету назову по брифу.</p>
-  <div class="price">
-    <div class="pcard"><div class="lab">Монтаж из вашего материала</div><div class="num">от 950<small> ₽</small></div><div class="per">20–40 сек · ваши видео/сток · объём от 5</div></div>
-    <div class="pcard"><div class="lab">Рилс под ключ</div><div class="num">от 1 250<small> ₽</small></div><div class="per">сценарий + монтаж + озвучка + субтитры · от 5</div></div>
-    <div class="pcard best"><div class="badge">хит</div><div class="lab">Рилс с ИИ-видео</div><div class="num">от 1 950<small> ₽</small></div><div class="per">ИИ-видео + оживление фото/обложек · от 5</div></div>
-    <div class="pcard"><div class="lab">Буктрейлер / премиум</div><div class="num">от 2 900<small> ₽</small></div><div class="per">драматургия, трейлер, сложный монтаж</div></div>
-  </div>
-  <div class="incl" style="margin-top:18px">
-    <span>Скидки на объеме</span>
-  </div>
-  <div class="incl">
-    <span>Сценарий</span><span>Монтаж</span><span>Озвучка</span><span>Субтитры</span><span>Музыка</span>
-    <span>ИИ-графика по запросу</span><span>Адаптация под площадку</span><span>Правки в работе</span>
-  </div>
-</div></section>
-
-<!-- CTA -->
-<div class="wrap"><div class="cta">
-  <h2>Нужны рилсы, которые <span class="grad">работают?</span></h2>
-  <p>Напишите в Telegram — обсудим задачу, пришлю смету и примеры под вашу нишу. Отвечаю быстро.</p>
-  <a class="btn" href="https://t.me/fboat25" target="_blank" style="font-size:18px;padding:16px 32px">✈ Написать @fboat25</a>
-</div></div>
-
-<!-- WORK -->
-<section id="work"><div class="wrap">
-  <div class="eyebrow">Портфолио</div>
-  <h2>Примеры последних работ</h2>
-  <p class="sub">Разные форматы и стили: развлекательные, экспертные, продуктовые, буктрейлеры и оживление картинок нейросетью. Наведите или нажмите — ролик заиграет.</p>
-  <div class="filters" id="filters"></div>
-  <div class="gal" id="gal"></div>
-</div></section>
-
-<footer><div class="wrap">
-  Рилсмейкер · <a class="tg" href="https://t.me/fboat25" target="_blank">@fboat25</a> в Telegram · Reels · Shorts · Stories · буктрейлеры · ИИ-графика
-</div></footer>
-
-<div id="lb" class="lb"><div class="lbbox"><span class="lbx">✕</span><video id="lbv" controls playsinline></video></div></div>
+<div class="viewer" id="viewer">
+  <button class="snd" id="snd" aria-label="Звук">🔊</button>
+  <button class="x" id="x" aria-label="Закрыть">✕</button>
+  <div class="feed" id="feed"></div>
+</div>
 
 <script>
-const V=[
- {k:"humor_shtirlic",t:"Анекдот-рилс «Штирлиц»",d:"Развлекательный формат: панч, стикеры, звук-акценты",c:"Юмор"},
- {k:"expert_hook",t:"Хук за 3 секунды",d:"Экспертный рилс: удержание с первого кадра",c:"1-shot Generation"},
- {k:"expert_ai",t:"Оживление фото нейросетью",d:"Как ИИ анимирует статичную картинку",c:"1-shot Generation"},
- {k:"expert_series",t:"Серия, а не один рилс",d:"Про системный контент-поток",c:"1-shot Generation"},
- {k:"service_aigfx",t:"ИИ-графика под ключ",d:"Из картинки — целый ролик",c:"ИИ-графика"},
- {k:"art_cover",t:"Видео-обложка книги",d:"Оживление обложки нейросетью, атмосферный арт",c:"ИИ-графика"},
- {k:"trailer_book",t:"Буктрейлер «Мост»",d:"Трейлер книги: текст, музыка, драматургия",c:"Буктрейлеры"},
- {k:"brand_cinema",t:"Бренд-рилс (кинематографично)",d:"ИИ-графика + реальные кадры, сторителлинг",c:"Бренд/продукт"},
- {k:"edit_realfootage",t:"Монтаж из вашего материала",d:"Живой голос спикера, ритм, субтитры, пэкшот",c:"Монтаж"},
-];
-function makeCard(v){
-  const card=document.createElement('div');card.className='vcard';
-  const status=v.status?`<span class="vstatus ${v.status}">${v.statusText}</span>`:'';
-  card.innerHTML=`<div class="vwrap"><span class="vtag">${v.c}</span>${status}
-    <video preload="metadata" muted loop playsinline poster="posters/${v.k}.jpg">
-      <source src="videos/${v.k}.mp4" type="video/mp4"></video>
-    <div class="play"><span>▶</span></div></div>
-    <div class="vmeta"><div class="t">${v.t}</div><div class="d">${v.d}</div></div>`;
-  const w=card.querySelector('.vwrap'),vid=card.querySelector('video');
-  w.addEventListener('mouseenter',()=>{vid.muted=true;vid.play();w.classList.add('playing')});
-  w.addEventListener('mouseleave',()=>{if(vid.muted){vid.pause();vid.currentTime=0;w.classList.remove('playing')}});
-  vid.addEventListener('click',e=>{e.preventDefault();openLB('videos/'+v.k+'.mp4')});
-  return card;
-}
-function fill(id,list){const g=document.getElementById(id);g.innerHTML='';list.forEach(v=>g.appendChild(makeCard(v)))}
+const V=["eif_final","ochf_1","ochf_2","verf_buk","book_cover","siam_r5","siam_r4","edit_realfootage"];
+const ICO='<svg class="ico" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>';
+const grid=document.getElementById('grid'),feed=document.getElementById('feed'),viewer=document.getElementById('viewer'),snd=document.getElementById('snd');
+let muted=false;
 
-const cats=["Все",...[...new Set(V.map(v=>v.c))]];
-const fbox=document.getElementById('filters');
-cats.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;if(i==0)b.className='on';
-  b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-    fill('gal',V.filter(v=>c==="Все"||v.c===c))};fbox.appendChild(b)});
-fill('gal',V);
-
-// Лайтбокс: клик по мелкой плашке-варианту или по финалу → воспроизведение
-const lb=document.getElementById('lb'), lbv=document.getElementById('lbv');
-function openLB(src){lbv.src=src;lbv.muted=false;lb.classList.add('on');lbv.currentTime=0;lbv.play()}
-function closeLB(){lb.classList.remove('on');lbv.pause();lbv.removeAttribute('src');lbv.load()}
-lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lbx'))closeLB()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB()});
-document.querySelectorAll('.mini').forEach(m=>{m.addEventListener('click',()=>{
-  const img=m.querySelector('img'); if(!img)return;
-  const src=img.getAttribute('src').replace('posters/','videos/').replace('.jpg','.mp4');
-  openLB(src);
-})});
-// Финалы в схемах: hover-превью + клик открывает в лайтбоксе
-document.querySelectorAll('video.hp').forEach(vid=>{
-  const w=vid.closest('.fv');
-  w.addEventListener('mouseenter',()=>{vid.muted=true;vid.play()});
-  w.addEventListener('mouseleave',()=>{vid.pause();vid.currentTime=0});
-  w.style.cursor='pointer';
-  w.addEventListener('click',()=>{const s=vid.querySelector('source').getAttribute('src');openLB(s)});
+// grid: posters, short muted preview on hover (desktop)
+V.forEach((n,i)=>{
+  const c=document.createElement('div');c.className='cell';
+  c.innerHTML=`<img src="posters/${n}.jpg" alt="" loading="lazy">${ICO}`;
+  c.onmouseenter=()=>{if(c.querySelector('video'))return;const v=document.createElement('video');Object.assign(v,{src:`videos/${n}.mp4`,muted:true,loop:true,playsInline:true,autoplay:true});v.style.cssText='position:absolute;inset:0';c.prepend(v);};
+  c.onmouseleave=()=>{const v=c.querySelector('video');if(v)v.remove();};
+  c.onclick=()=>open(i);
+  grid.append(c);
 });
 
-// Скрины редактора — открытие в модале
-document.querySelectorAll('.shots img').forEach(im=>im.addEventListener('click',()=>{
-  const o=document.createElement('div');o.className='lb on';o.style.cursor='zoom-out';
-  o.innerHTML='<img src="'+im.getAttribute('src')+'" style="max-height:92vh;max-width:94vw;border-radius:12px;border:1px solid #232838">';
-  o.addEventListener('click',()=>o.remove());document.body.appendChild(o);
-}));
+// viewer: one reel per screen, vertical snap scroll like Reels
+V.forEach(n=>{
+  const s=document.createElement('section');s.className='slide';
+  s.innerHTML=`<video src="videos/${n}.mp4" poster="posters/${n}.jpg" loop playsinline preload="none"></video><div class="tap"></div><div class="cap"><img src="avatar.jpg" alt=""><span>fboat25</span></div>`;
+  s.querySelector('.tap').onclick=()=>{const v=s.querySelector('video');v.paused?v.play().catch(()=>{}):v.pause();};
+  feed.append(s);
+});
+let cur=-1,tm;
+function playAt(i){i=Math.max(0,Math.min(V.length-1,i));if(i===cur)return;cur=i;
+  [...feed.children].forEach((sl,k)=>{const v=sl.querySelector('video');
+    if(k===i){v.preload='auto';v.muted=muted;v.currentTime=0;v.play().catch(()=>{v.muted=true;v.play().catch(()=>{});});}
+    else{v.pause();if(Math.abs(k-i)===1)v.preload='auto';}});}
+feed.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(()=>{if(viewer.classList.contains('on')&&feed.clientHeight)playAt(Math.round(feed.scrollTop/feed.clientHeight));},120);});
+
+function open(i){viewer.classList.add('on');document.body.style.overflow='hidden';
+  feed.scrollTop=i*feed.clientHeight;cur=-1;playAt(i);
+  history.pushState({v:1},'');}
+function close(){viewer.classList.remove('on');document.body.style.overflow='';feed.querySelectorAll('video').forEach(v=>v.pause());cur=-1;}
+document.getElementById('x').onclick=()=>history.back();
+window.onpopstate=close;
+snd.onclick=()=>{muted=!muted;snd.textContent=muted?'🔇':'🔊';feed.querySelectorAll('video').forEach(v=>v.muted=muted);};
+document.addEventListener('keydown',e=>{if(!viewer.classList.contains('on'))return;
+  if(e.key==='Escape')history.back();
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();feed.scrollBy({top:(e.key==='ArrowDown'?1:-1)*innerHeight,behavior:'smooth'});}});
 </script>
 </body>
 </html>
